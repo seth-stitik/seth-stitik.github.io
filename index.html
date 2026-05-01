@@ -1,102 +1,473 @@
-<div align="center">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Seth Stitik — Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<h1>Hey, I'm Seth 👋</h1>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2128;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --blue: #36BCF7;
+    --purple: #b388ff;
+    --green: #69ff47;
+    --gold: #f9a825;
+  }
 
-<p><b>Full Stack Developer · Logistics Tech · Creative Builder</b></p>
+  html { scroll-behavior: smooth; }
 
-![Hampton Roads](https://img.shields.io/badge/📍_Hampton_Roads,_VA-0d1117?style=flat-square)
-![Tenet TMS](https://img.shields.io/badge/Tenet_TMS-building-36BCF7?style=flat-square&labelColor=0d1117)
-![Freelance](https://img.shields.io/badge/Freelance-open-69ff47?style=flat-square&labelColor=0d1117)
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
 
-<img src="https://readme-typing-svg.demolab.com?font=Space+Mono&pause=1800&color=36BCF7&center=true&vCenter=true&width=600&lines=Full+Stack+Developer;Building+Tenet+TMS;Freelance+Web+Developer;Music+%26+Lighting+Tech;Always+learning.+Always+shipping." />
+  /* subtle grid bg */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(54,188,247,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(54,188,247,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding-bottom: 2.5rem;
+    border-bottom: 0.5px solid var(--border);
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 7vw, 56px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .hero h1 .accent { color: var(--blue); }
+
+  .hero .sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    padding: 5px 12px;
+    border-radius: 4px;
+    border: 0.5px solid;
+    letter-spacing: 1px;
+    cursor: default;
+  }
+  .badge-blue  { border-color: var(--blue);   color: var(--blue);   background: rgba(54,188,247,0.07); }
+  .badge-purple{ border-color: var(--purple); color: var(--purple); background: rgba(179,136,255,0.07); }
+  .badge-green { border-color: var(--green);  color: var(--green);  background: rgba(105,255,71,0.07); }
+
+  .typing-row {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--blue);
+    min-height: 22px;
+    margin-top: 4px;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 9px;
+    height: 15px;
+    background: var(--blue);
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* SECTIONS */
+  .section {
+    padding: 2rem 0;
+    border-bottom: 0.5px solid var(--border);
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: var(--border);
+  }
+
+  /* ABOUT GRID */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  @media (max-width: 520px) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+
+  .about-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    transition: border-color 0.2s;
+  }
+  .about-card:hover { border-color: var(--border2); }
+  .about-card .icon { font-size: 20px; margin-bottom: 8px; }
+  .about-card .label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+  .about-card .val { font-size: 13px; font-weight: 600; line-height: 1.5; }
+  .about-card .val .a { color: var(--blue); }
+
+  /* STACK */
+  .stack-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .tech-pill {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    padding: 6px 13px;
+    border-radius: 4px;
+    border: 0.5px solid var(--border2);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .tech-pill:hover { border-color: var(--blue); background: rgba(54,188,247,0.05); }
+
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+  .dot.p { background: var(--purple); }
+  .dot.g { background: var(--green); }
+
+  /* WORK */
+  .work-grid { display: grid; gap: 10px; }
+
+  .work-card {
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+    background: var(--surface);
+  }
+  .work-card:hover { border-color: var(--border2); }
+  .work-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--blue);
+  }
+  .work-card.p::before { background: var(--purple); }
+  .work-card.g::before { background: var(--green); }
+  .work-card.y::before { background: var(--gold); }
+
+  .work-title { font-size: 15px; font-weight: 700; margin-bottom: 5px; }
+  .work-desc {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .work-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--blue);
+    text-decoration: none;
+  }
+  .work-link:hover { text-decoration: underline; }
+  .work-link.g { color: var(--green); }
+  .work-link.y { color: var(--gold); }
+
+  /* STATS */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .stats-grid img, .streak-img {
+    width: 100%;
+    border-radius: 10px;
+    border: 0.5px solid var(--border);
+    display: block;
+  }
+
+  /* LIFE */
+  .life-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 10px;
+  }
+
+  .life-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .life-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .life-card .emoji { font-size: 22px; margin-bottom: 8px; }
+  .life-card .life-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding-top: 2rem;
+  }
+  .footer code {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    background: var(--surface);
+    padding: 8px 18px;
+    border-radius: 4px;
+    border: 0.5px solid var(--border);
+  }
+  .footer code span { color: var(--blue); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section:nth-child(2) { animation-delay: 0.05s; }
+  .section:nth-child(3) { animation-delay: 0.10s; }
+  .section:nth-child(4) { animation-delay: 0.15s; }
+  .section:nth-child(5) { animation-delay: 0.20s; }
+  .section:nth-child(6) { animation-delay: 0.25s; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Hey, I'm <span class="accent">Seth</span> 👋</h1>
+    <p class="sub">Full Stack Developer &nbsp;·&nbsp; Logistics Tech &nbsp;·&nbsp; Creative Builder</p>
+    <div class="badges">
+      <span class="badge badge-blue">📍 Hampton Roads, VA</span>
+      <span class="badge badge-purple">Tenet TMS</span>
+      <span class="badge badge-green">Open to Freelance</span>
+    </div>
+    <div class="typing-row"><span id="typed"></span><span class="cursor"></span></div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section">
+    <div class="section-label">about</div>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="icon">🚚</div>
+        <div class="label">Current Focus</div>
+        <div class="val">Building &amp; scaling <span class="a">Tenet TMS</span> — logistics software for real-world operations</div>
+      </div>
+      <div class="about-card">
+        <div class="icon">🌐</div>
+        <div class="label">Freelance</div>
+        <div class="val">Web development for medium-large businesses in <span class="a">Hampton Roads, VA</span></div>
+      </div>
+      <div class="about-card">
+        <div class="icon">🎛️</div>
+        <div class="label">Off the Clock</div>
+        <div class="val">DJ, DMX lighting programmer, working with <span class="a">@disco_dunes</span> sunset series</div>
+      </div>
+      <div class="about-card">
+        <div class="icon">🌎</div>
+        <div class="label">Fan Of</div>
+        <div class="val"><span class="a">Boca Juniors</span> 💙💛 &nbsp;·&nbsp; Snowboarding &nbsp;·&nbsp; West Coast &amp; South America</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STACK -->
+  <div class="section">
+    <div class="section-label">core stack</div>
+    <div class="stack-row">
+      <span class="tech-pill"><span class="dot"></span>React</span>
+      <span class="tech-pill"><span class="dot"></span>Next.js</span>
+      <span class="tech-pill"><span class="dot"></span>Node.js</span>
+      <span class="tech-pill"><span class="dot"></span>PostgreSQL</span>
+      <span class="tech-pill"><span class="dot"></span>Vercel</span>
+      <span class="tech-pill"><span class="dot p"></span>TypeScript</span>
+      <span class="tech-pill"><span class="dot p"></span>Tailwind</span>
+      <span class="tech-pill"><span class="dot g"></span>DMX / ArtNet</span>
+    </div>
+    <img src="https://skillicons.dev/icons?i=react,nextjs,nodejs,postgres,vercel,ts,tailwind" alt="Tech stack" style="height:38px;border-radius:6px"/>
+  </div>
+
+  <!-- WORK -->
+  <div class="section">
+    <div class="section-label">featured work</div>
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="work-title">🚚 Tenet TMS</div>
+        <div class="work-desc">Transportation Management System built from scratch for real logistics operations. Currently scaling.</div>
+      </div>
+      <div class="work-card p">
+        <div class="work-title">🏢 Custom TMS</div>
+        <div class="work-desc">End-to-end TMS for a local logistics company. Replaces legacy workflows with modern full-stack architecture.</div>
+      </div>
+      <div class="work-card g">
+        <div class="work-title">🌐 Wavelength Entertainment</div>
+        <div class="work-desc">Live business site for an entertainment company in Hampton Roads.</div>
+        <a class="work-link g" href="http://wavelengthentertainment.co" target="_blank">→ wavelengthentertainment.co</a>
+      </div>
+      <div class="work-card y">
+        <div class="work-title">🏗️ House Revival Project</div>
+        <div class="work-desc">In progress — high-converting site for a local business modernizing their web presence.</div>
+        <a class="work-link y" href="http://houserevivalproject.com" target="_blank">→ houserevivalproject.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- GITHUB -->
+  <div class="section">
+    <div class="section-label">github activity</div>
+    <div class="stats-grid">
+      <img src="https://github-readme-stats.vercel.app/api?username=seth-stitik&show_icons=true&theme=tokyonight&hide_border=true&rank_icon=github&bg_color=161b22&title_color=36BCF7&icon_color=36BCF7" alt="GitHub Stats"/>
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=seth-stitik&layout=compact&theme=tokyonight&hide_border=true&bg_color=161b22&title_color=36BCF7" alt="Top Languages"/>
+    </div>
+    <img class="streak-img" src="https://streak-stats.demolab.com?user=seth-stitik&theme=tokyonight&hide_border=true&background=161b22&ring=36BCF7&fire=36BCF7&currStreakLabel=36BCF7" alt="GitHub Streak"/>
+  </div>
+
+  <!-- LIFE -->
+  <div class="section">
+    <div class="section-label">outside the terminal</div>
+    <div class="life-grid">
+      <div class="life-card">
+        <div class="emoji">🎧</div>
+        <div class="life-label">DJ &amp; electronic<br/>music</div>
+      </div>
+      <div class="life-card">
+        <div class="emoji">💡</div>
+        <div class="life-label">DMX lighting<br/>programming</div>
+      </div>
+      <div class="life-card">
+        <div class="emoji">🌅</div>
+        <div class="life-label">@disco_dunes<br/>sunset series</div>
+      </div>
+      <div class="life-card">
+        <div class="emoji">🏂</div>
+        <div class="life-label">Snowboarding<br/>West Coast</div>
+      </div>
+      <div class="life-card">
+        <div class="emoji">🌎</div>
+        <div class="life-label">Dream: Maldives<br/>or Fiji</div>
+      </div>
+      <div class="life-card">
+        <div class="emoji">💙</div>
+        <div class="life-label">Boca Juniors<br/>supporter</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <code>📍 <span>Hampton Roads, Virginia</span> &nbsp;·&nbsp; Building locally. Thinking globally.</code>
+  </div>
 
 </div>
 
----
-
-## 🚀 About
-
-<table>
-  <tr>
-    <td width="50%">
-      <h3>🚚 Current Focus</h3>
-      Building & scaling <b>Tenet TMS</b> — logistics software for real-world operations
-    </td>
-    <td width="50%">
-      <h3>🌐 Freelance</h3>
-      Web development for medium-large businesses in <b>Hampton Roads, VA</b>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <h3>🎛️ Off the Clock</h3>
-      DJ, DMX lighting programmer, working with <b>@disco_dunes</b> sunset series
-    </td>
-    <td width="50%">
-      <h3>🌎 Fan Of</h3>
-      <b>Boca Juniors</b> 💙💛 · Snowboarding · West Coast & South America
-    </td>
-  </tr>
-</table>
-
----
-
-## 🛠 Core Stack
-
-<p>
-  <img src="https://skillicons.dev/icons?i=react,nextjs,nodejs,postgres,vercel,ts,tailwind" />
-</p>
-
-`React` `Next.js` `Node.js` `PostgreSQL` `Vercel` `TypeScript` `Tailwind` `DMX / ArtNet`
-
----
-
-## 🏗 Featured Work
-
-| | Project | Description |
-|---|---|---|
-| 🚚 | **Tenet TMS** | Transportation Management System built for real solutions. Happily working with a great deve team. |
-| 🏢 | **Custom TMS** | End-to-end TMS for a local logistics company. Replaces legacy workflows with modern full-stack architecture. |
-| 🌐 | **[wavelengthentertainment.co](http://wavelengthentertainment.co)** | Live business site for an entertainment company in Hampton Roads. |
-| 🏗️ | **[houserevivalproject.com](http://houserevivalproject.com)** *(in progress)* | High-converting site for a local business modernizing their web presence. |
-
----
-
-## 📈 GitHub Activity
-
-<p align="center">
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=seth-stitik&show_icons=true&theme=tokyonight&hide_border=true&rank_icon=github" />
-  <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=seth-stitik&layout=compact&theme=tokyonight&hide_border=true" />
-</p>
-<p align="center">
-  <img src="https://streak-stats.demolab.com?user=seth-stitik&theme=tokyonight&hide_border=true" />
-</p>
-
----
-
-## 🎧 Outside the Terminal
-
-<table>
-  <tr>
-    <td align="center" width="110">🎧</td>
-    <td align="center" width="110">💡</td>
-    <td align="center" width="110">🌅</td>
-    <td align="center" width="110">🏂</td>
-    <td align="center" width="110">🌎</td>
-    <td align="center" width="110">💙</td>
-  </tr>
-  <tr>
-    <td align="center"><sub>DJ & electronic music</sub></td>
-    <td align="center"><sub>DMX lighting programming</sub></td>
-    <td align="center"><sub>@disco_dunes sunset series</sub></td>
-    <td align="center"><sub>Snowboarding West Coast lover</sub></td>
-    <td align="center"><sub>Dream: Maldives or Fiji</sub></td>
-    <td align="center"><sub>Boca Juniors supporter</sub></td>
-  </tr>
-</table>
-
----
-
-<div align="center">
-  <code>📍 Hampton Roads, Virginia · Building locally. Thinking globally.</code>
-</div>
+<script>
+const lines = [
+  "Full Stack Developer",
+  "Building Tenet TMS",
+  "Freelance Web Developer",
+  "Music & Lighting Tech",
+  "Always learning. Always shipping."
+];
+let li = 0, ci = 0, del = false, txt = '';
+const el = document.getElementById('typed');
+function tick() {
+  if (!del) {
+    txt = lines[li].slice(0, ++ci);
+    el.textContent = txt;
+    if (ci === lines[li].length) { del = true; setTimeout(tick, 1800); return; }
+  } else {
+    txt = lines[li].slice(0, --ci);
+    el.textContent = txt;
+    if (ci === 0) { del = false; li = (li + 1) % lines.length; }
+  }
+  setTimeout(tick, del ? 40 : 70);
+}
+tick();
+</script>
+</body>
+</html>
